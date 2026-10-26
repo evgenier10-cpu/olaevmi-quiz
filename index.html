@@ -3,330 +3,294 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Інтенсив «Розкішне волосся»</title>
-<meta name="description" content="5-денний онлайн-інтенсив дієтолога-трихолога Олі Євміної: як знайти причину випадіння волосся, які аналізи здати і що змінити в харчуванні та догляді.">
+<title>Квіз «Чому випадає волосся»</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap">
 <style>
-/* Layout: long single column for phones; frosted cards on a lavender-blush haze, same family as the quiz */
+/* Layout: one narrow frosted card floating on a lavender-blush haze (the brand's #aca1d5), one question per screen */
 :root{
   --bg:#f4f1fb; --haze1:#cfc6ee; --haze2:#f6cfdc; --haze3:#e4ddf7;
-  --card:rgba(255,255,255,.8); --solid:#ffffff; --ink:#221a3a; --muted:#6b6487; --line:#e0daf2;
-  --accent:#5b45b0; --on-accent:#ffffff; --accent-soft:#ece7fb; --lav:#aca1d5; --blush:#f3c9d7;
-  --good:#3f7a62; --good-soft:#e2efe9;
-  --display:"Unbounded","Manrope",system-ui,sans-serif;
-  --body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --card:rgba(255,255,255,.78); --solid:#ffffff; --ink:#221a3a; --muted:#6b6487; --line:#e0daf2;
+  --accent:#5b45b0; --on-accent:#ffffff; --accent-soft:#ece7fb; --lav:#aca1d5;
+  --sage:#4f7a68; --sage-soft:#e2efe9; --warn:#a0602f; --warn-soft:#fbeee3;
+  --display:"Unbounded", "Manrope", system-ui, sans-serif;
+  --body:"Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#141122; --haze1:#3b2f6e; --haze2:#5a2a4a; --haze3:#251d45;
-  --card:rgba(30,25,52,.82); --solid:#1e1934; --ink:#f1edff; --muted:#aea6cc; --line:#3a3260;
-  --accent:#b9a8f2; --on-accent:#1a1430; --accent-soft:#2c2452; --lav:#aca1d5; --blush:#6b3a55;
-  --good:#9cd0b8; --good-soft:#1d3029; color-scheme:dark}}
+  --card:rgba(30,25,52,.78); --solid:#1e1934; --ink:#f1edff; --muted:#aea6cc; --line:#3a3260;
+  --accent:#b9a8f2; --on-accent:#1a1430; --accent-soft:#2c2452; --lav:#aca1d5;
+  --sage:#9cd0b8; --sage-soft:#1d3029; --warn:#f0b787; --warn-soft:#3a2a1f; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#141122; --haze1:#3b2f6e; --haze2:#5a2a4a; --haze3:#251d45;
-  --card:rgba(30,25,52,.82); --solid:#1e1934; --ink:#f1edff; --muted:#aea6cc; --line:#3a3260;
-  --accent:#b9a8f2; --on-accent:#1a1430; --accent-soft:#2c2452; --lav:#aca1d5; --blush:#6b3a55;
-  --good:#9cd0b8; --good-soft:#1d3029; color-scheme:dark}
+  --card:rgba(30,25,52,.78); --solid:#1e1934; --ink:#f1edff; --muted:#aea6cc; --line:#3a3260;
+  --accent:#b9a8f2; --on-accent:#1a1430; --accent-soft:#2c2452; --lav:#aca1d5;
+  --sage:#9cd0b8; --sage-soft:#1d3029; --warn:#f0b787; --warn-soft:#3a2a1f; color-scheme:dark}
 
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;
-  background-image:radial-gradient(60% 40% at 10% 4%,var(--haze1),transparent 70%),radial-gradient(50% 35% at 95% 14%,var(--haze2),transparent 70%),radial-gradient(70% 40% at 50% 60%,var(--haze3),transparent 70%);
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:16px 110px}
-.wrap{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;min-height:100%;
+  background-image:radial-gradient(60% 45% at 12% 8%,var(--haze1),transparent 70%),radial-gradient(55% 40% at 92% 22%,var(--haze2),transparent 70%),radial-gradient(70% 50% at 50% 100%,var(--haze3),transparent 70%);
+  background-attachment:fixed;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 48px}
+.wrap{max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+.brand{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:13px;color:var(--muted)}
+.brand b{font-family:var(--display);font-size:15px;color:var(--ink);font-weight:600;letter-spacing:.02em;text-transform:uppercase}
+.brand span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px 12px;backdrop-filter:blur(8px)}
+.card{background:var(--card);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid var(--line);border-radius:28px;padding:28px 22px;display:flex;flex-direction:column;gap:18px;box-shadow:0 20px 50px -30px rgba(60,40,140,.45)}
 h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;margin:0;text-wrap:balance;letter-spacing:-.01em}
-h1{font-size:clamp(28px,7.2vw,46px);text-transform:uppercase}
-h2{font-size:clamp(22px,5.4vw,30px)}
-h3{font-size:17px;line-height:1.25}
+h1{font-size:clamp(28px,7.4vw,38px);text-transform:uppercase}
+h2{font-size:clamp(21px,5.6vw,26px)}
+h3{font-size:18px}
 p{margin:0}
-.muted{color:var(--muted)}
-.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:800}
-.card{background:var(--card);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid var(--line);border-radius:28px;padding:30px 22px;display:flex;flex-direction:column;gap:18px;box-shadow:0 22px 50px -34px rgba(60,40,140,.5)}
-.pill{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:600}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 0 4px var(--good-soft)}
-.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.top b{font-family:var(--display);font-size:14px;text-transform:uppercase;letter-spacing:.03em}
-
-/* hero */
-.hero{padding-block:34px 28px}
-.hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--accent),#b0679a);-webkit-background-clip:text;background-clip:text;color:transparent}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .hero h1 em{background:linear-gradient(90deg,var(--accent),#f0a6c8);-webkit-background-clip:text;background-clip:text}}
-:root[data-theme="dark"] .hero h1 em{background:linear-gradient(90deg,var(--accent),#f0a6c8);-webkit-background-clip:text;background-clip:text}
-.lead{font-size:17px;color:var(--muted);max-width:60ch}
-.price{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
-.price strong{font-family:var(--display);font-size:46px;line-height:1;color:var(--accent);font-weight:700}
-.price s{color:var(--muted);font-size:20px}
-.badge{background:var(--blush);color:var(--ink);font-weight:800;font-size:13px;border-radius:999px;padding:4px 10px}
-.btn{appearance:none;border:0;border-radius:999px;background:var(--accent);color:var(--on-accent);font:800 17px/1 var(--body);padding:20px 26px;cursor:pointer;text-align:center;text-decoration:none;display:block;box-shadow:0 12px 28px -12px var(--accent)}
+.lead{color:var(--muted);font-size:16px}
+.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.fact{border-top:1px solid var(--line);padding-top:10px;font-size:13px;color:var(--muted)}
+.fact b{display:block;font-family:var(--display);font-size:20px;color:var(--accent);font-weight:600;font-variant-numeric:tabular-nums}
+.btn{appearance:none;border:0;border-radius:999px;background:var(--accent);color:var(--on-accent);font:700 16px/1 var(--body);padding:18px 24px;cursor:pointer;text-align:center;text-decoration:none;display:block;box-shadow:0 10px 24px -12px var(--accent)}
 .btn:hover{filter:brightness(1.07)}
-.btn small{display:block;font-weight:600;font-size:12px;opacity:.85;margin-top:6px}
-:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
-.trust{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:13px;color:var(--muted)}
-.trust span::before{content:"✓ ";color:var(--good);font-weight:800}
-.timer{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:14px;color:var(--muted)}
-.timer .t{display:flex;gap:6px;font-family:var(--display);font-variant-numeric:tabular-nums;color:var(--ink)}
-.timer .t span{background:var(--solid);border:1px solid var(--line);border-radius:10px;padding:6px 8px;min-width:44px;text-align:center;font-size:16px}
-
-/* pains */
-.checks{display:flex;flex-direction:column;gap:10px;margin:0;padding:0;list-style:none}
-.checks li{display:flex;gap:12px;align-items:flex-start;background:var(--solid);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
-.checks li::before{content:"";flex:none;width:20px;height:20px;border-radius:6px;border:1.5px solid var(--accent);margin-top:2px;background:var(--accent-soft)}
-.callout{border-radius:20px;padding:18px;background:var(--accent-soft);display:flex;gap:16px;align-items:center}
-.callout b{font-family:var(--display);font-size:30px;color:var(--accent);flex:none;font-variant-numeric:tabular-nums}
-
-/* system */
-.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-@media (max-width:620px){.grid3{grid-template-columns:1fr}}
-.tile{background:var(--solid);border:1px solid var(--line);border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:8px}
-.tile .k{font-family:var(--display);font-size:13px;color:var(--accent)}
-
-/* program */
-.days{display:flex;flex-direction:column}
-.day{display:grid;grid-template-columns:76px minmax(0,1fr);gap:14px;padding:16px 0;border-top:1px solid var(--line)}
-.day:first-child{border-top:0}
-.day .n{font-family:var(--display);font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);padding-top:3px}
-.day .n b{display:block;font-size:24px;color:var(--accent);letter-spacing:0}
-.day p{color:var(--muted);font-size:15px;margin-top:4px}
-.bonus{display:inline-block;margin-top:8px;background:var(--good-soft);color:var(--good);font-weight:700;font-size:12px;border-radius:999px;padding:4px 10px}
-.day.web{background:var(--accent-soft);border-radius:18px;padding:16px;border-top:0;margin-top:6px}
-
-/* expert */
-.expert{display:grid;grid-template-columns:150px minmax(0,1fr);gap:20px;align-items:start}
-@media (max-width:560px){.expert{grid-template-columns:1fr}}
-.photo{aspect-ratio:4/5;max-width:100%;border-radius:22px;overflow:hidden;background:linear-gradient(160deg,var(--lav),var(--blush));display:grid;place-items:center;font-family:var(--display);font-size:42px;color:var(--on-accent)}
-.photo img{width:100%;height:100%;object-fit:cover;display:block}
-@media (max-width:560px){.photo{max-width:200px}}
-.creds{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
-.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-.stat{border-top:1px solid var(--line);padding-top:10px;font-size:13px;color:var(--muted)}
-.stat b{display:block;font-family:var(--display);font-size:22px;color:var(--ink);font-variant-numeric:tabular-nums}
-
-/* fit */
-.fit{display:flex;flex-wrap:wrap;gap:8px}
-.fit span{background:var(--solid);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:14px;font-weight:600}
-
-/* reviews: image slots, hidden if file missing */
-.reviews{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-@media (max-width:620px){.reviews{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.reviews figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--solid)}
-.reviews img{width:100%;display:block}
-
-/* offer */
-.offer{border:2px solid var(--accent)}
-.incl{display:flex;flex-direction:column;gap:8px;margin:0;padding:0;list-style:none}
-.incl li{display:flex;gap:10px}
-.incl li::before{content:"✓";color:var(--good);font-weight:800}
-.guar{display:flex;gap:14px;align-items:center;background:var(--good-soft);border-radius:18px;padding:14px 16px;font-size:14px}
-.guar b{font-family:var(--display);font-size:24px;color:var(--good);flex:none}
-
-/* faq */
-details{border-top:1px solid var(--line);padding:14px 0}
-details:first-of-type{border-top:0}
-summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:12px}
-summary::-webkit-details-marker{display:none}
-summary::after{content:"+";font-family:var(--display);color:var(--accent);font-size:20px;line-height:1}
-details[open] summary::after{content:"–"}
-details p{color:var(--muted);margin-top:8px;font-size:15px}
-
-footer{font-size:12px;color:var(--muted);display:flex;flex-direction:column;gap:8px;padding-top:8px}
-
-/* sticky CTA */
-.sticky{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:var(--card);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .25s}
-.sticky.on{transform:none}
-.sticky .in{max-width:720px;margin:0 auto;display:flex;align-items:center;gap:12px}
-.sticky .in div{flex:1;min-width:0;font-size:13px;color:var(--muted);line-height:1.3}
-.sticky .in div b{display:block;color:var(--ink);font-size:15px}
-.sticky .btn{padding:15px 20px;font-size:15px;flex:none}
-@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+.btn:disabled{opacity:.4;cursor:not-allowed;filter:none}
+.btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line);box-shadow:none}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.progress{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.bar{flex:1;height:4px;background:var(--line);border-radius:4px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);transition:width .3s}
+.hint{font-size:14px;color:var(--muted)}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;border:1px solid var(--line);background:var(--solid);color:var(--ink);border-radius:18px;padding:15px 18px;font:500 15px/1.4 var(--body);cursor:pointer;transition:border-color .15s,background .15s,transform .15s}
+.opt:active{transform:scale(.99)}
+.opt:hover{border-color:var(--accent)}
+.opt .mark{flex:none;width:20px;height:20px;border:1.5px solid var(--muted);border-radius:50%;margin-top:1px;display:grid;place-items:center}
+.opt.multi .mark{border-radius:5px}
+.opt[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.opt[aria-pressed="true"] .mark{border-color:var(--accent);background:var(--accent)}
+.opt[aria-pressed="true"] .mark::after{content:"";width:6px;height:10px;border:solid var(--on-accent);border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px)}
+.nav{display:flex;gap:10px}
+.nav .btn{flex:1}
+.nav .btn.ghost{flex:0 0 auto}
+.profile{display:flex;flex-direction:column;gap:12px}
+.factor{border:1px solid var(--line);border-radius:20px;padding:18px;background:var(--solid);display:flex;flex-direction:column;gap:10px}
+.factor.main{border-color:var(--accent);background:var(--accent-soft)}
+.tag{align-self:flex-start;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:4px 10px}
+.factor.main .tag{background:var(--solid)}
+.mrow .track i{background:linear-gradient(90deg,var(--lav),var(--accent))!important}
+.meter{display:flex;flex-direction:column;gap:8px}
+.mrow{display:grid;grid-template-columns:minmax(0,1fr) 110px 34px;gap:10px;align-items:center;font-size:13px}
+.mrow .track{height:6px;background:var(--line);border-radius:6px;overflow:hidden}
+.mrow .track i{display:block;height:100%;background:var(--accent)}
+.mrow span:last-child{text-align:right;color:var(--muted);font-variant-numeric:tabular-nums}
+ul.clean{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
+.note{border-radius:12px;padding:14px 16px;font-size:14px;background:var(--warn-soft);color:var(--ink);border-left:3px solid var(--warn)}
+.lessons{display:flex;flex-direction:column;gap:8px}
+.lesson{display:grid;grid-template-columns:62px minmax(0,1fr);gap:10px;font-size:14px;padding:10px 0;border-top:1px solid var(--line)}
+.lesson b{color:var(--sage);font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding-top:2px}
+.price{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.price strong{font-family:var(--display);font-size:40px;line-height:1;font-weight:700;color:var(--accent)}
+.bar i{background:linear-gradient(90deg,var(--lav),var(--accent))!important}
+.price s{color:var(--muted)}
+.price span{color:var(--muted);font-size:14px}
+.small{font-size:12px;color:var(--muted)}
+.expert{display:flex;gap:12px;align-items:center;font-size:14px;color:var(--muted)}
+.expert .av{flex:none;width:44px;height:44px;border-radius:50%;background:var(--sage-soft);color:var(--sage);display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:20px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
-<style>html,body{margin:0}:root{padding-top:env(safe-area-inset-top,0px)}img{max-width:100%}[hidden]{display:none!important}</style>
-<!-- Meta Pixel -->
-<script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','1392638372396376');
-fbq('track','PageView');
-</script>
+<style>html,body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
 <div class="wrap">
-  <div class="top"><b>Оля Євміна</b><span class="pill"><i class="dot"></i>Новий потік стартує завтра</span></div>
-
-  <section class="card hero" id="hero">
-    <span class="eyebrow">Онлайн-інтенсив · 5 днів · дієтолог-трихолог</span>
-    <h1>Пробувала все, а волосся <em>досі сиплеться?</em></h1>
-    <p class="lead">Причина рідко в шампуні. За 5 днів Оля Євміна покаже, як знайти саме вашу: які аналізи здати, як їх читати і що змінити в харчуванні та догляді, щоб випадіння зупинилось.</p>
-    <div class="price"><strong>$11</strong><s>$60</s><span class="badge">−80%</span><span class="muted">≈ 480 грн</span></div>
-    <a class="btn buy" href="#" data-place="hero">Долучитися до інтенсиву<small>5 відеоуроків + вебінар · старт завтра</small></a>
-    <div class="trust"><span>Повернення коштів 14 днів</span><span>Записи уроків</span><span>Доступ 60 днів</span><span>Українською, з будь-якої країни</span></div>
-    <div class="timer" aria-live="off">До старту потоку: <span class="t" id="timer"><span>--</span><span>--</span><span>--</span></span></div>
-  </section>
-
-  <section class="card">
-    <h2>Знайома ситуація?</h2>
-    <ul class="checks">
-      <li>Волосся всюди: на подушці, в руці, у ванній. Мити голову вже страшно.</li>
-      <li>Хвіст став удвічі тоншим, на проділі просвічується шкіра.</li>
-      <li>Біотин, «вітаміни для волосся», розмарин, мезотерапія. Покращилось і знову почалось.</li>
-      <li>Аналізи здавала, а лікар каже «все в нормі».</li>
-      <li>Не розумієш, з чого почати, особливо якщо живеш за кордоном.</li>
-    </ul>
-    <div class="callout"><b>26/49</b><p>учасниць, які проходили перевірку аналізів, прийшли без аналізів узагалі. Лікували випадіння доглядом і вітамінами «на око», не знаючи причини.</p></div>
-  </section>
-
-  <section class="card">
-    <span class="eyebrow">Чому догляд не допомагав</span>
-    <h2>Волосся відновлюється, коли працюють три рівні разом</h2>
-    <div class="grid3">
-      <div class="tile"><span class="k">Зсередини</span><h3>Аналізи і дефіцити</h3><p class="muted">Феритин, вітамін D, B12, цинк, щитовидка. Оцінюємо за оптимумами для волосся, а не лише за референсом лабораторії.</p></div>
-      <div class="tile"><span class="k">Зовні</span><h3>Догляд під вашу шкіру голови</h3><p class="muted">Який шампунь, пілінг і засоби справді працюють, а на чому можна зекономити.</p></div>
-      <div class="tile"><span class="k">Спосіб життя</span><h3>Харчування і стрес</h3><p class="muted">Білок, раціон і звички, без яких навіть правильні добавки не дають результату.</p></div>
-    </div>
-  </section>
-
-  <section class="card" id="program">
-    <span class="eyebrow">Програма</span>
-    <h2>Що буде на інтенсиві</h2>
-    <p class="muted">Щодня новий відеоурок у Telegram. Дивишся у зручний час, записи залишаються на 60 днів.</p>
-    <div class="days">
-      <div class="day"><span class="n">День<b>1</b></span><div><h3>Топ-5 причин проблем із волоссям</h3><p>Дефіцити, щитовидка, гормони, стрес, догляд: як зрозуміти, що саме у вас.</p><span class="bonus">Бонус: чек-лист оцінки пошкодження волосся</span></div></div>
-      <div class="day"><span class="n">День<b>2</b></span><div><h3>Аналізи та добавки для волосся</h3><p>Що здати, як читати результати і чому «в нормі» не завжди норма для волосся.</p></div></div>
-      <div class="day"><span class="n">День<b>3</b></span><div><h3>Зовнішній догляд</h3><p>Шампуні, кондиціонери, маски і пілінг: що обрати під свій тип шкіри голови.</p></div></div>
-      <div class="day"><span class="n">День<b>4</b></span><div><h3>Харчування та смузі для волосся</h3><p>Раціон, який дає фолікулам будівельний матеріал.</p><span class="bonus">Бонуси: меню для здоров'я волосся, десерти без цукру</span></div></div>
-      <div class="day"><span class="n">День<b>5</b></span><div><h3>Як знизити вплив стресу на волосся</h3><p>Чому випадіння починається через 2–4 місяці після стресу і що з цим робити.</p></div></div>
-      <div class="day web"><span class="n">День<b>6</b></span><div><h3>Вебінар «Розкішне волосся: система, яка працює»</h3><p>Оля збирає все в один план і відповідає на питання. Запис буде, якщо не встигнеш на ефір.</p><span class="bonus">Бонус: гайд по шампунях, кондиціонерах і масках</span></div></div>
-    </div>
-    <a class="btn buy" href="#" data-place="program">Забрати місце за $11</a>
-  </section>
-
-  <section class="card">
-    <span class="eyebrow">Хто веде</span>
-    <div class="expert">
-      <div class="photo" id="photo">О</div>
-      <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
-        <h2>Оля Євміна</h2>
-        <ul class="creds">
-          <li>Дипломований дієтолог-трихолог з вищою медичною освітою (Краків)</li>
-          <li>Практикуючий спеціаліст, понад 2000 пацієнток</li>
-          <li>Працює на перетині трихології і дієтології: аналізи, дефіцити, харчування й догляд разом</li>
-        </ul>
-        <p class="muted">Сама пройшла через випадіння і мультивітаміни без результату. Тому вчить шукати причину, а не купувати черговий засіб.</p>
-      </div>
-    </div>
-    <div class="stats">
-      <div class="stat"><b>2000+</b>пацієнток</div>
-      <div class="stat"><b>800+</b>жінок пройшли інтенсив</div>
-      <div class="stat"><b>8+</b>країн, звідки навчаються</div>
-    </div>
-  </section>
-
-  <section class="card">
-    <h2>Підійде, навіть якщо у вас</h2>
-    <div class="fit"><span>Щитовидка, АІТ, еутирокс</span><span>Після пологів або ГВ</span><span>Менопауза</span><span>Фарбування і освітлення</span><span>«Генетика»</span><span>Міноксидил без результату</span><span>Ви за кордоном</span></div>
-    <p class="muted">На інтенсиві Оля розбирає кожну з цих ситуацій окремо. Засоби й аналізи можна знайти в будь-якій країні, де ви живете.</p>
-  </section>
-
-  <section class="card" id="reviews">
-    <span class="eyebrow">Відгуки учасниць</span>
-    <h2>Що кажуть після інтенсиву</h2>
-    <div class="reviews">
-      <figure><img src="review1.jpg" alt="Відгук учасниці інтенсиву" loading="lazy"></figure>
-      <figure><img src="review2.jpg" alt="Відгук учасниці інтенсиву" loading="lazy"></figure>
-      <figure><img src="review3.jpg" alt="Відгук учасниці інтенсиву" loading="lazy"></figure>
-      <figure><img src="review4.jpg" alt="Відгук учасниці інтенсиву" loading="lazy"></figure>
-      <figure><img src="review5.jpg" alt="Відгук учасниці інтенсиву" loading="lazy"></figure>
-      <figure><img src="review6.jpg" alt="Відгук учасниці інтенсиву" loading="lazy"></figure>
-    </div>
-  </section>
-
-  <section class="card offer" id="offer">
-    <span class="eyebrow">Твій старт</span>
-    <h2>Інтенсив «Розкішне волосся»</h2>
-    <ul class="incl">
-      <li>5 відеоуроків, по одному щодня</li>
-      <li>Вебінар з Олею і його запис</li>
-      <li>4 бонуси: чек-лист, меню, десерти без цукру, гайд по засобах</li>
-      <li>Куратор у Telegram відповідає на питання</li>
-      <li>Доступ до всіх матеріалів 60 днів</li>
-    </ul>
-    <div class="price"><strong>$11</strong><s>$60</s><span class="badge">−80%</span><span class="muted">≈ 480 грн, одноразово</span></div>
-    <a class="btn buy" href="#" data-place="offer">Долучитися за $11<small>Безпечна оплата через Stripe</small></a>
-    <div class="guar"><b>14</b><p>днів на повернення коштів, якщо інтенсив вам не підійде. Просто напишіть у підтримку.</p></div>
-  </section>
-
-  <section class="card" id="faq">
-    <h2>Часті питання</h2>
-    <div>
-      <details><summary>Чи буде запис, якщо я не встигну?</summary><p>Так. Уроки і вебінар залишаються в доступі 60 днів, дивіться у зручний час.</p></details>
-      <details><summary>У мене щитовидка / ГВ / менопауза. Мені підійде?</summary><p>Так. Ці ситуації розбираються окремо, бо саме вони часто стоять за випадінням.</p></details>
-      <details><summary>Я живу за кордоном. Де здати аналізи і купити засоби?</summary><p>Учасниці проходять інтенсив з Польщі, Італії, Іспанії, США та інших країн. Аналізи стандартні й доступні в будь-якій лабораторії.</p></details>
-      <details><summary>Чи можна без аналізів?</summary><p>Можна почати без них. На другому уроці Оля пояснює, що саме здати і як прочитати результати.</p></details>
-      <details><summary>Чим інтенсив відрізняється від курсу?</summary><p>Інтенсив дає розуміння причин і загальну систему. Курс «Розкішне волосся» дає детальні трихологічні схеми, посилання на засоби й нутрицевтики та супровід команди. Про курс розповідаємо на вебінарі.</p></details>
-      <details><summary>Що, якщо не допоможе?</summary><p>Протягом 14 днів можна повернути кошти. Результат від самої системи залежить від регулярності: перші зміни зазвичай помітні через 2–3 місяці.</p></details>
-    </div>
-  </section>
-
-  <a class="btn buy" href="#" data-place="bottom">Долучитися до інтенсиву за $11</a>
-
-  <footer>
-    <p>Інформація на сторінці має освітній характер і не замінює консультацію лікаря. Аналізи призначає і трактує лікар. Результати індивідуальні.</p>
-    <p>© Hajime Ventures LLC</p>
-  </footer>
+  <div class="brand"><b>Оля Євміна</b><span>дієтолог-трихолог</span></div>
+  <main class="card" id="app" aria-live="polite"></main>
+  <p class="small">Тест не є діагнозом і не замінює консультацію лікаря. Він показує, які фактори найчастіше стоять за схожими відповідями і що варто перевірити.</p>
 </div>
 
-<div class="sticky" id="sticky"><div class="in"><div><b>Інтенсив за $11</b>Старт завтра · повернення 14 днів</div><a class="btn buy" href="#" data-place="sticky">Долучитися</a></div></div>
-
 <script>
-/* === Налаштування === */
-var CHECKOUT_URL = "https://buy.stripe.com/cNi7sMbSwbtMaobcU18EM07"; // перевірте, що це посилання на $11
-/* ==================== */
+const LANDING = "https://olaevmi.com/superhairevg/v-usd-1";
 
-document.querySelectorAll(".buy").forEach(function(a){
-  a.href = CHECKOUT_URL; a.target = "_top";
-  a.addEventListener("click", function(){
-    try{ if(window.fbq) fbq("track","InitiateCheckout",{value:11,currency:"USD",content_name:"intensive",placement:a.dataset.place}); }catch(e){}
+const CAT = {
+  def:   {name:"Дефіцитне випадіння", short:"Дефіцити",
+          what:"Волоссю бракує «будівельного матеріалу». Організм віддає залізо, білок і вітаміни спершу серцю та мозку, а фолікули отримують залишки, тому волосся рідшає і росте тонким.",
+          why:"Шампуні й маски працюють зовні і не дають фолікулу того, чого йому бракує зсередини. Вітаміни «на око» часто б'ють повз реальний дефіцит.",
+          check:["Феритин і залізо","Вітамін D","B12 і фолієва кислота","Цинк","Загальний аналіз крові"],
+          lesson:["Урок 2","Аналізи та добавки для волосся: що здати і як читати результати"]},
+  thy:   {name:"Щитовидка і гормони", short:"Щитовидка",
+          what:"Щитовидна залоза задає темп усім процесам у тілі, зокрема росту волосся. Навіть «пограничні» показники або підбір дози еутироксу можуть давати дифузне випадіння, сухість і тьмяність.",
+          why:"Поки гормональний фон не врівноважений, догляд і процедури дають лише короткий ефект: «покращилось і знову почалось».",
+          check:["ТТГ, вільний Т4","Антитіла до ТПО","Феритин (при щитовидці падає частіше)","Вітамін D"],
+          lesson:["Урок 1","Топ-5 причин проблем із волоссям: щитовидка, гормони, дефіцити"]},
+  post:  {name:"Гормональний перехід", short:"Пологи, ГВ, менопауза",
+          what:"Після пологів, під час тривалого ГВ або навколо менопаузи гормони різко змінюються. Частина волосин одночасно переходить у фазу випадіння, а запаси заліза й вітамінів часто вже виснажені.",
+          why:"Тут важливо і відновити запаси, і підтримати фолікули на час перебудови. Сам догляд з цим не впорається.",
+          check:["Феритин і залізо","Вітамін D","B12","ТТГ (після пологів щитовидка «стрибає» частіше)"],
+          lesson:["Урок 1–2","Причини і аналізи: як пологи, ГВ і менопауза впливають на волосся"]},
+  stress:{name:"Стресове (телогенове) випадіння", short:"Стрес і подія",
+          what:"Сильний стрес, хвороба, наркоз чи різка дієта «вимикають» частину фолікулів. Випадіння стартує через 2–4 місяці після події, тому зв'язок рідко помічають.",
+          why:"Якщо тригер позаду, волосся може відновитися, але тільки коли тілу вистачає ресурсів. Без цього випадіння затягується на місяці.",
+          check:["Феритин і залізо","Вітамін D","Білок у раціоні","Сон і рівень стресу зараз"],
+          lesson:["Урок 5","Як знизити вплив стресу на волосся"]},
+  andro: {name:"Спадковий тип стоншення", short:"Спадковість",
+          what:"Фолікули чутливі до андрогенів і поступово мініатюризуються: волосся стає тоншим, розширюється проділ, просвічується маківка. Це повільний процес, і його важливо не пропустити.",
+          why:"«У мене генетика» не означає, що нічого не зробити. Дефіцити й гормони часто посилюють спадковий тип, і їх можна закрити.",
+          check:["Феритин і залізо","Вітамін D","ТТГ","Обговорити з лікарем статеві гормони"],
+          lesson:["Урок 1 + вебінар","Причини стоншення і система, яка працює"]},
+  care:  {name:"Догляд і механічні пошкодження", short:"Догляд",
+          what:"Частина проблеми може бути не в корені, а по довжині: волосся обламується від освітлення, гарячого фену, тертя і невідповідного шампуню. Здається, що випадає, хоча насправді ламається.",
+          why:"Дорогі маски не допоможуть, якщо шампунь не під тип шкіри голови або щодня працює плойка.",
+          check:["Тип шкіри голови і частота миття","Склад шампуню","Термозахист і укладка"],
+          lesson:["Урок 3","Зовнішній догляд: шампуні, кондиціонери, маски"]},
+};
+
+const Q = [
+ {t:"Що турбує найбільше?", multi:false, o:[
+   ["Волосся сильно випадає",{stress:1,def:1}],
+   ["Стало тонким, хвіст удвічі тонший",{def:1,andro:1}],
+   ["Ламається, не можу відростити довжину",{care:2,def:1}],
+   ["Жирніє біля коренів, лупа, свербіж",{care:2}],
+   ["Все разом: випадає, тоншає, жирніє і ламається",{def:2,care:1}]]},
+ {t:"Як ви помічаєте випадіння?", hint:"Можна обрати кілька", multi:true, o:[
+   ["Жмені після миття, волосся на подушці й одязі",{stress:2,def:1}],
+   ["Випадають короткі волосинки 1–8 см",{def:2}],
+   ["Розширюється проділ, просвічує маківка",{andro:3}],
+   ["Залисини на скронях",{andro:2,thy:1}],
+   ["Явного випадіння немає, але густоти менше",{def:1,andro:1}]]},
+ {t:"Коли це почалось?", multi:false, o:[
+   ["Різко, кілька місяців тому",{stress:2,post:1}],
+   ["Поступово, роками",{andro:2,def:1}],
+   ["Після пологів або під час ГВ",{post:3,def:1}],
+   ["Навколо менопаузи, з віком",{post:2,andro:1}],
+   ["Хвилями: то краще, то знову сиплеться",{def:2,thy:1}]]},
+ {t:"Що відбувалось за 2–6 місяців до початку?", hint:"Можна обрати кілька", multi:true, o:[
+   ["Сильний стрес, втрата близької людини, переїзд",{stress:3}],
+   ["Хвороба, COVID, операція чи наркоз",{stress:3}],
+   ["Різке схуднення або сувора дієта",{def:3,stress:1}],
+   ["Пологи або завершення ГВ",{post:3}],
+   ["Нічого такого не пригадую",{andro:1,def:1}]]},
+ {t:"Що зі щитовидною залозою?", multi:false, o:[
+   ["Є діагноз (АІТ, гіпотиреоз), приймаю еутирокс",{thy:4}],
+   ["Діагнозу немає, але часто мерзну, набряки, втома",{thy:2,def:1}],
+   ["Перевіряла нещодавно, все добре",{}],
+   ["Не перевіряла",{thy:1}]]},
+ {t:"Що з цього про вас?", hint:"Можна обрати кілька", multi:true, o:[
+   ["Хронічна втома, мало енергії",{def:2,thy:1}],
+   ["Ламкі нігті, бліда шкіра",{def:2}],
+   ["Рясні місячні",{def:3}],
+   ["Судоми, поганий сон",{def:2,stress:1}],
+   ["Почуваюся добре",{care:1}]]},
+ {t:"Як ви харчуєтесь?", multi:false, o:[
+   ["М'ясо, рибу, яйця їм регулярно",{}],
+   ["М'ясо рідко або я вегетаріанка",{def:3}],
+   ["Часто дієти, пропускаю прийоми їжі",{def:2}],
+   ["Багато солодкого і кави, мало білка",{def:2,stress:1}]]},
+ {t:"Чи здавали аналізи саме під волосся?", multi:false, flag:true, o:[
+   ["Ні, ніколи",{}, "noLabs"],
+   ["Здавала, сказали «все в нормі»",{def:1}, "normal"],
+   ["Так, знайшли дефіцит",{def:3}, "foundDef"],
+   ["Не пам'ятаю",{}, "noLabs"]]},
+ {t:"Що вже пробували?", hint:"Можна обрати кілька", multi:true, flag:true, o:[
+   ["Шампуні, маски, сироватки",{care:1},"tried"],
+   ["Вітаміни «для волосся», біотин",{def:1},"biotin"],
+   ["Розмарин, олії, масажний гребінець",{},"tried"],
+   ["Мезотерапію, плазму, ампули",{},"tried"],
+   ["Міноксидил",{andro:1},"minox"],
+   ["Ще нічого не пробувала",{},"none"]]},
+ {t:"Що є у вашому догляді?", hint:"Можна обрати кілька", multi:true, o:[
+   ["Фарбую або освітлюю",{care:2}],
+   ["Щодня фен, плойка чи праска",{care:2}],
+   ["Тугі зачіски, тру волосся рушником",{care:1}],
+   ["Мию голову щодня, бо швидко жирніє",{care:1}],
+   ["Нічого з цього",{}]]},
+ {t:"Чи є рідке волосся в родині?", multi:false, o:[
+   ["Так, у мами, бабусі чи тата",{andro:3}],
+   ["Ні, у родині густе волосся",{}],
+   ["Не знаю",{andro:1}]]},
+];
+
+let step = -1;
+const ans = Q.map(()=>new Set());
+const app = document.getElementById("app");
+
+function el(html){app.innerHTML = html; const f = app.querySelector("h1,h2"); if(f){f.setAttribute("tabindex","-1"); f.focus({preventScroll:false});}}
+
+function intro(){
+  el(`<span class="eyebrow">Тест · 2 хвилини</span>
+  <h1>Чому випадає ваше волосся?</h1>
+  <p class="lead">Дайте відповідь на 11 питань і дізнайтеся, які фактори найімовірніше стоять за вашим випадінням і стоншенням, що перевірити в першу чергу і чому догляд досі не допомагав.</p>
+  <div class="facts">
+    <div class="fact"><b>2000+</b>пацієнток в практиці</div>
+    <div class="fact"><b>6</b>типових причин</div>
+    <div class="fact"><b>11</b>питань</div>
+  </div>
+  <button class="btn" id="go">Пройти тест</button>
+  <div class="expert"><div class="av">О</div><span>Тест складено на основі методики Олі Євміної, дипломованого дієтолога-трихолога з вищою медичною освітою (Краків).</span></div>`);
+  document.getElementById("go").onclick = ()=>{step=0;render();};
+}
+
+function question(){
+  const q = Q[step], sel = ans[step];
+  el(`<div class="progress"><span>${step+1} з ${Q.length}</span><div class="bar"><i style="width:${(step+1)/Q.length*100}%"></i></div></div>
+  <h2>${q.t}</h2>${q.hint?`<p class="hint">${q.hint}</p>`:""}
+  <div class="opts">${q.o.map((o,i)=>`<button type="button" id="q${step}o${i}" class="opt ${q.multi?"multi":""}" aria-pressed="${sel.has(i)}" data-i="${i}"><span class="mark"></span><span>${o[0]}</span></button>`).join("")}</div>
+  <div class="nav"><button class="btn ghost" id="back">Назад</button><button class="btn" id="next" ${sel.size?"":"disabled"}>Далі</button></div>`);
+  app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
+    const i=+b.dataset.i;
+    if(q.multi){
+      const excl = /Нічого|Ще нічого|Почуваюся добре|Нічого такого/.test(q.o[i][0]);
+      if(sel.has(i)) sel.delete(i); else {
+        if(excl) sel.clear(); else q.o.forEach((o,j)=>{ if(/Нічого|Ще нічого|Почуваюся добре|Нічого такого/.test(o[0])) sel.delete(j); });
+        sel.add(i);
+      }
+      app.querySelectorAll(".opt").forEach(x=>x.setAttribute("aria-pressed",sel.has(+x.dataset.i)));
+      document.getElementById("next").disabled=!sel.size;
+    } else { sel.clear(); sel.add(i); app.querySelectorAll(".opt").forEach(x=>x.setAttribute("aria-pressed",sel.has(+x.dataset.i))); document.getElementById("next").disabled=false; }
   });
-});
+  document.getElementById("back").onclick=()=>{step--;render();};
+  document.getElementById("next").onclick=()=>{ if(sel.size){step++;render();} };
+}
 
-// фото Олі: покладіть olya.jpg поруч з index.html
-(function(){
-  var box=document.getElementById("photo"), img=new Image();
-  img.alt="Оля Євміна, дієтолог-трихолог";
-  img.onload=function(){ box.textContent=""; box.appendChild(img); };
-  img.src="olya.jpg";
-})();
+function compute(){
+  const s={def:0,thy:0,post:0,stress:0,andro:0,care:0}, flags=new Set();
+  Q.forEach((q,qi)=>ans[qi].forEach(i=>{const [,w,f]=q.o[i]; for(const k in w) s[k]+=w[k]; if(f) flags.add(f);}));
+  const max={def:0,thy:0,post:0,stress:0,andro:0,care:0};
+  Q.forEach(q=>{ if(q.multi){ for(const k in max) max[k]+=q.o.reduce((a,o)=>a+(o[1][k]||0),0);} else { for(const k in max) max[k]+=Math.max(0,...q.o.map(o=>o[1][k]||0)); } });
+  const pct={}; for(const k in s) pct[k]=Math.round(Math.min(1,s[k]/(max[k]*0.55))*100);
+  const order=Object.keys(s).sort((a,b)=>pct[b]-pct[a]||s[b]-s[a]);
+  return {s,pct,order,flags};
+}
 
-// відгуки: картки без файлу ховаються; якщо файлів немає зовсім, ховається весь блок
-(function(){
-  var figs=[].slice.call(document.querySelectorAll("#reviews figure")), left=figs.length;
-  function done(){ if(--left===0 && !figs.some(function(f){return !f.hidden;})) document.getElementById("reviews").hidden=true; }
-  figs.forEach(function(f){ var i=f.querySelector("img");
-    i.addEventListener("error",function(){ f.hidden=true; done(); });
-    i.addEventListener("load",done);
-    if(i.complete && i.naturalWidth) done(); else if(i.complete) { f.hidden=true; done(); }
-  });
-})();
+function result(){
+  const {pct,order,flags}=compute();
+  const top=order[0], second=pct[order[1]]>=40?order[1]:null;
+  const main=CAT[top], sec=second?CAT[second]:null;
+  const notes=[];
+  if(flags.has("noLabs")) notes.push("Ви ще не здавали аналізи під волосся. Так приходить майже половина учасниць, які пройшли перевірку аналізів. Без них неможливо зрозуміти, якого саме дефіциту бракує.");
+  if(flags.has("normal")) notes.push("«В нормі» за референсом лабораторії ще не означає норму для волосся. Для фолікулів Оля оцінює аналізи за функціональними оптимумами, і вони вищі.");
+  if(flags.has("biotin")) notes.push("Великі дози біотину спотворюють результати деяких аналізів, зокрема на щитовидку. Перед здачею крові його зазвичай припиняють за кілька днів, уточніть це з лікарем.");
+  if(flags.has("minox")) notes.push("Міноксидил стимулює ріст, але не закриває дефіцити. Якщо результату немає місяцями, причину варто шукати глибше.");
+  const lessons=[main.lesson]; if(sec && sec.lesson[0]!==main.lesson[0]) lessons.push(sec.lesson);
+  if(!lessons.some(l=>l[0]==="Урок 2")) lessons.push(CAT.def.lesson);
+  const href=`${LANDING}?utm_source=quiz&utm_medium=result&utm_content=${top}${second?"_"+second:""}`;
+  el(`<span class="eyebrow">Ваш результат</span>
+  <h2>${sec?`${main.name} + ${sec.short.toLowerCase()}`:main.name}</h2>
+  <p class="lead">Найімовірніше, у вас поєднуються кілька факторів. Ось як вони розподілились за вашими відповідями:</p>
+  <div class="meter">${order.map(k=>`<div class="mrow"><span>${CAT[k].short}</span><span class="track"><i style="width:${pct[k]}%"></i></span><span>${pct[k]}%</span></div>`).join("")}</div>
+  <div class="profile">
+    <div class="factor main"><span class="tag">Головний фактор</span><h3>${main.name}</h3><p>${main.what}</p><p><b>Чому догляд не допомагав.</b> ${main.why}</p>
+      <div><b>Що варто перевірити:</b><ul class="clean">${main.check.map(c=>`<li>${c}</li>`).join("")}</ul></div></div>
+    ${sec?`<div class="factor"><span class="tag">Посилює проблему</span><h3>${sec.name}</h3><p>${sec.what}</p></div>`:""}
+  </div>
+  ${notes.map(n=>`<div class="note">${n}</div>`).join("")}
+  <h3>Що далі</h3>
+  <p>Випадіння майже ніколи не має однієї причини, тому окремі засоби дають «покращилось і знову почалось». На 5-денному інтенсиві «Розкішне волосся» Оля пояснює, як знайти саме вашу причину: які аналізи здати, як їх читати і що змінити в харчуванні та догляді.</p>
+  <div class="lessons"><b class="small">Найважливіші уроки для вашого профілю</b>${lessons.map(l=>`<div class="lesson"><b>${l[0]}</b><span>${l[1]}</span></div>`).join("")}
+    <div class="lesson"><b>Бонуси</b><span>Чек-лист оцінки пошкодження волосся, меню для здоров'я волосся, гайд по шампунях і маскам</span></div></div>
+  <div class="price"><strong>$11</strong><span>≈ 480 грн · 5 відеоуроків + вебінар з записом</span></div>
+  <a class="btn" href="${href}" target="_blank" rel="noopener">Долучитися до інтенсиву за $11</a>
+  <button class="btn ghost" id="again">Пройти тест ще раз</button>
+  <p class="small">Результат тесту не є діагнозом. Аналізи призначає і трактує лікар; інтенсив допомагає розібратися, що питати і на що звернути увагу.</p>`);
+  document.getElementById("again").onclick=()=>{ans.forEach(a=>a.clear());step=-1;render();};
+}
 
-// таймер до старту наступного потоку (опівночі за місцевим часом)
-(function(){
-  var t=document.getElementById("timer").children;
-  function pad(n){return (n<10?"0":"")+n;}
-  function tick(){
-    var now=new Date(), end=new Date(now); end.setHours(24,0,0,0);
-    var s=Math.max(0,Math.floor((end-now)/1000));
-    t[0].textContent=pad(Math.floor(s/3600))+" год"; t[1].textContent=pad(Math.floor(s%3600/60))+" хв"; t[2].textContent=pad(s%60)+" с";
-  }
-  tick(); setInterval(tick,1000);
-})();
-
-// липка кнопка: з'являється, коли перша кнопка зникла з екрана, і ховається біля фінального блоку
-(function(){
-  var st=document.getElementById("sticky"), hero=document.getElementById("hero"), offer=document.getElementById("offer");
-  if(!("IntersectionObserver" in window)){ st.classList.add("on"); return; }
-  var heroOut=false, offerIn=false;
-  function upd(){ st.classList.toggle("on", heroOut && !offerIn); }
-  new IntersectionObserver(function(e){ heroOut=!e[0].isIntersecting; upd(); },{threshold:0}).observe(hero);
-  new IntersectionObserver(function(e){ offerIn=e[0].isIntersecting; upd(); },{threshold:0.2}).observe(offer);
-})();
+function render(){ if(step<0) intro(); else if(step>=Q.length) result(); else question(); window.scrollTo({top:0}); }
+render();
 </script>
 </body>
 </html>
