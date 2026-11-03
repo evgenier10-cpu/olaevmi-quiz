@@ -95,6 +95,23 @@ ul.clean{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 <style>html,body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}[hidden]{display:none!important}</style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1698163998688564');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1698163998688564&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 <div class="wrap">
@@ -104,7 +121,19 @@ ul.clean{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
 </div>
 
 <script>
-const LANDING = "https://olaevmi.com/superhairevg/v-usd-1";
+/* === Налаштування === */
+const CHECKOUT_URL = "https://buy.stripe.com/cNi7sMbSwbtMaobcU18EM07"; // посилання Stripe з olaevmi.com/superhairevg/v-usd-1
+const PRICE = 11;          // цінність конверсії
+const CURRENCY = "USD";    // валюта конверсії
+const PRICE_LABEL = "$11"; // як ціна показується на кнопці
+/* ==================== */
+
+// Події пікселя: кожна спрацьовує один раз за візит, навіть якщо людина повертається «Назад»
+const firedEvents = new Set();
+function px(type, name, params){
+  if(firedEvents.has(name)) return; firedEvents.add(name);
+  try{ if(window.fbq) fbq(type, name, params||{}); }catch(e){}
+}
 
 const CAT = {
   def:   {name:"Дефіцитне випадіння", short:"Дефіцити",
@@ -221,11 +250,12 @@ function intro(){
   </div>
   <button class="btn" id="go">Пройти тест</button>
   <div class="expert"><div class="av">О</div><span>Тест складено на основі методики Олі Євміної, дипломованого дієтолога-трихолога з вищою медичною освітою (Краків).</span></div>`);
-  document.getElementById("go").onclick = ()=>{step=0;render();};
+  document.getElementById("go").onclick = ()=>{ px("trackCustom","QuizStart"); step=0; render(); };
 }
 
 function question(){
   const q = Q[step], sel = ans[step];
+  px("trackCustom","Question_"+(step+1), {question: step+1});
   el(`<div class="progress"><span>${step+1} з ${Q.length}</span><div class="bar"><i style="width:${(step+1)/Q.length*100}%"></i></div></div>
   <h2>${q.t}</h2>${q.hint?`<p class="hint">${q.hint}</p>`:""}
   <div class="opts">${q.o.map((o,i)=>`<button type="button" id="q${step}o${i}" class="opt ${q.multi?"multi":""}" aria-pressed="${sel.has(i)}" data-i="${i}"><span class="mark"></span><span>${o[0]}</span></button>`).join("")}</div>
@@ -267,7 +297,9 @@ function result(){
   if(flags.has("minox")) notes.push("Міноксидил стимулює ріст, але не закриває дефіцити. Якщо результату немає місяцями, причину варто шукати глибше.");
   const lessons=[main.lesson]; if(sec && sec.lesson[0]!==main.lesson[0]) lessons.push(sec.lesson);
   if(!lessons.some(l=>l[0]==="Урок 2")) lessons.push(CAT.def.lesson);
-  const href=`${LANDING}?utm_source=quiz&utm_medium=result&utm_content=${top}${second?"_"+second:""}`;
+  const profile=`${top}${second?"_"+second:""}`;
+  const href=`${CHECKOUT_URL}?utm_source=quiz&utm_medium=result&utm_content=${profile}&client_reference_id=quiz_${profile}`;
+  px("trackCustom","QuizResult", {profile: profile});
   el(`<span class="eyebrow">Ваш результат</span>
   <h2>${sec?`${main.name} + ${sec.short.toLowerCase()}`:main.name}</h2>
   <p class="lead">Найімовірніше, у вас поєднуються кілька факторів. Ось як вони розподілились за вашими відповідями:</p>
@@ -282,11 +314,17 @@ function result(){
   <p>Випадіння майже ніколи не має однієї причини, тому окремі засоби дають «покращилось і знову почалось». На 5-денному інтенсиві «Розкішне волосся» Оля пояснює, як знайти саме вашу причину: які аналізи здати, як їх читати і що змінити в харчуванні та догляді.</p>
   <div class="lessons"><b class="small">Найважливіші уроки для вашого профілю</b>${lessons.map(l=>`<div class="lesson"><b>${l[0]}</b><span>${l[1]}</span></div>`).join("")}
     <div class="lesson"><b>Бонуси</b><span>Чек-лист оцінки пошкодження волосся, меню для здоров'я волосся, гайд по шампунях і маскам</span></div></div>
-  <div class="price"><strong>$11</strong><span>≈ 480 грн · 5 відеоуроків + вебінар з записом</span></div>
-  <a class="btn" href="${href}" target="_blank" rel="noopener">Долучитися до інтенсиву за $11</a>
+  <div class="price"><strong>${PRICE_LABEL}</strong><span>≈ 480 грн · 5 відеоуроків + вебінар з записом</span></div>
+  <a class="btn" id="buy" href="${href}" data-profile="${profile}">Долучитися до інтенсиву за ${PRICE_LABEL}</a>
   <button class="btn ghost" id="again">Пройти тест ще раз</button>
   <p class="small">Результат тесту не є діагнозом. Аналізи призначає і трактує лікар; інтенсив допомагає розібратися, що питати і на що звернути увагу.</p>`);
   document.getElementById("again").onclick=()=>{ans.forEach(a=>a.clear());step=-1;render();};
+  // InitiateCheckout при переході на Stripe: спершу відправляємо подію, потім відкриваємо оплату
+  document.getElementById("buy").addEventListener("click",function(e){
+    e.preventDefault(); const url=this.href;
+    try{ if(window.fbq) fbq("track","InitiateCheckout",{value:PRICE,currency:CURRENCY,content_name:"Інтенсив «Розкішне волосся»",content_category:"quiz",num_items:1,profile:this.dataset.profile}); }catch(err){}
+    setTimeout(function(){ window.location.href=url; },350);
+  });
 }
 
 function render(){ if(step<0) intro(); else if(step>=Q.length) result(); else question(); window.scrollTo({top:0}); }
